@@ -13,7 +13,6 @@ Active Learning of Network-Emergent Properties**
   <img src="images/AL_Workflow_Final.png" width="900">
 </p>
 
-
 ## Overview
 
 EloKriti uses Gaussian-process surrogate models to prioritize unevaluated
@@ -44,26 +43,36 @@ EloKriti/
 ├── images/
 │   └── AL_Workflow_Final.png
 ├── README.md
-└── LICENSE 
+└── LICENSE
+```
 
+## Requirements
 
-** Requirements
+The active-learning workflow requires:
 
-The Bayesian-optimization workflow requires:
-
+```text
 numpy
 pandas
 scipy
 scikit-learn
+```
 
-Install using:
+Install the required packages using:
 
+```bash
 pip install numpy pandas scipy scikit-learn
+```
 
-Input files
+## Input files
 
-The candidate-pool CSV should contain:
+EloKriti uses two CSV files:
 
+1. a candidate-pool file containing all candidates available for selection;
+2. an evaluated-candidate file containing candidates that already have MD-derived objective values.
+
+The candidate-pool CSV must contain:
+
+```text
 reaction_id
 reactant_1
 molecular_weight_Boltzmann_average
@@ -71,43 +80,24 @@ logP_Boltzmann_average
 TPSA_Boltzmann_average
 normalized_monomer_phi_Boltzmann_average
 normalized_backbone_phi_Boltzmann_average
+```
 
-The evaluated-candidate CSV should contain the same columns plus:
+The evaluated-candidate CSV must contain the same columns plus:
 
+```text
 elastic_modulus
 volumetric_shrinkage
 ffv
+```
 
 Only successfully evaluated candidates with values for all three objectives
 are used to train the surrogate models.
 
-Active-learning configuration
+## Run candidate selection
 
-The paper configuration uses:
+From the repository root, run:
 
-TF-IDF analyzer          character
-n-gram range             2-5
-maximum TF-IDF features  12000
-SVD components           8
-random seed              42
-
-GP kernel                ConstantKernel × Matern(nu=2.5) + WhiteKernel
-GP optimizer restarts    1
-
-random scalarizations    64
-weight distribution      Dirichlet(1,1,1)
-expected-improvement xi  0.01
-
-Objective directions are:
-
-elastic modulus          maximize
-volumetric shrinkage     minimize
-fractional free volume   minimize
-
-Run candidate selection
-
-From the repository root:
-
+```bash
 python scripts/suggest_next.py \
   --candidate-csv candidate_pool.csv \
   --evaluated-csv evaluated_clean.csv \
@@ -115,31 +105,33 @@ python scripts/suggest_next.py \
   --top-k 10 \
   --seed 42 \
   --scalarizations 64
+```
 
-The output CSV contains the highest-ranked unevaluated candidates together
-with surrogate predictions, predictive uncertainties, and acquisition scores.
+The script ranks the unevaluated candidates and writes the selected batch to
+`next_candidates.csv`.
 
-After explicit virtual-curing and molecular-dynamics evaluation, successful
-candidate results are added to the evaluated CSV and the acquisition step is
-repeated.
+After the selected candidates are evaluated using the molecular-dynamics
+workflow, add the successful results to the evaluated CSV and run the command
+again for the next acquisition round.
 
-Data availability
+## Data availability
 
-This repository contains the active-learning and Bayesian-optimization code.
+This repository contains the active-learning and Bayesian-optimization code
+associated with EloKriti.
 
 Publication-associated molecular-dynamics inputs, processed results, and
-simulation data will be separately in a permanent research-data
+simulation data will be archived separately in a permanent research-data
 repository.
 
-Citation
+## Citation
 
 If you use this code, please cite:
 
-Accelerated Discovery of BPA-Free Dental Resin Candidates through
-Active Learning of Network-Emergent Properties
+**Accelerated Discovery of BPA-Free Dental Resin Candidates through
+Active Learning of Network-Emergent Properties**
 
 The final journal citation and DOI will be added after publication.
 
-License
+## License
 
-MIT License. See LICENSE.
+This project is distributed under the MIT License. See `LICENSE`.

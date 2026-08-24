@@ -1,4 +1,4 @@
-EloKriti
+# EloKriti
 
 Chemistry-aware active learning for the discovery of BPA-free dental resin
 backbones using molecular-dynamics-derived network properties.
@@ -6,14 +6,15 @@ backbones using molecular-dynamics-derived network properties.
 This repository contains the active-learning and multi-objective
 Bayesian-optimization code used in:
 
-Accelerated Discovery of BPA-Free Dental Resin Candidates through
-Active Learning of Network-Emergent Properties
+**Accelerated Discovery of BPA-Free Dental Resin Candidates through
+Active Learning of Network-Emergent Properties**
 
 <p align="center">
   <img src="images/AL_Workflow_Final.png" width="900">
 </p>
 
-Overview
+
+## Overview
 
 EloKriti uses Gaussian-process surrogate models to prioritize unevaluated
 candidate backbones for explicit virtual-curing and molecular-dynamics
@@ -31,7 +32,7 @@ The surrogate models are used only for candidate selection. Final property
 values and Pareto assignments are based on explicit molecular-dynamics
 evaluations.
 
-Repository structure
+## Repository structure
 
 EloKriti/
 ├── polymers_bo/

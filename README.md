@@ -27,7 +27,7 @@ The three optimization objectives are:
 
 The surrogate models are used only for candidate selection. Final property
 values and Pareto assignments are based on explicit molecular-dynamics
-evaluations.
+evaluations. 
 
 ## Repository structure
 
@@ -39,7 +39,9 @@ EloKriti/
 │   ├── bo.py
 │   └── suggest.py
 ├── scripts/
-│   └── suggest_next.py
+│   ├── suggest_next.py
+│   ├── analyze_hypervolume.py
+│   └── make_al_progress.py
 ├── images/
 │   └── AL_Workflow_Final.png
 ├── README.md
@@ -112,7 +114,7 @@ The script ranks the unevaluated candidates and writes the selected batch to
 
 After the selected candidates are evaluated using the molecular-dynamics
 workflow, add the successful results to the evaluated CSV and run the command
-again for the next acquisition round. 
+again for the next acquisition round.
 
 ## Hypervolume calculations
 
@@ -127,18 +129,24 @@ python scripts/analyze_hypervolume.py \
   --output-prefix al_hypervolume \
   --mc-samples 300000 \
   --seed 42
+```
 
 This script:
 
-transforms the objectives to a common maximize-all convention;
-computes the cumulative Pareto front at each active-learning iteration;
-normalizes the objectives using fixed bounds from the complete evaluated set;
-estimates dominated hypervolume using 300,000 Monte Carlo samples;
-uses random seed 42 and the same Monte Carlo sample set for all iterations.
+- transforms the objectives to a common maximize-all convention;
+- computes the cumulative Pareto front at each active-learning iteration;
+- normalizes the objectives using fixed bounds from the complete evaluated set;
+- estimates dominated hypervolume using 300,000 Monte Carlo samples;
+- uses random seed 42 and the same Monte Carlo sample set for all iterations.
 
 To regenerate the active-learning progress figure, run:
 
+```bash
 python scripts/make_al_progress.py
+```
+
+The hypervolume analysis is used only as a progress metric and
+does not contribute to candidate acquisition.
 
 ## Data availability
 
@@ -161,3 +169,6 @@ The final journal citation and DOI will be added after publication.
 ## License
 
 This project is distributed under the MIT License. See `LICENSE`.
+
+
+

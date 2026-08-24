@@ -22,11 +22,9 @@ evaluation.
 
 The three optimization objectives are:
 
-maximize elastic modulus;
-
-minimize volumetric shrinkage;
-
-minimize fractional free volume.
+- maximize elastic modulus;
+- minimize volumetric shrinkage;
+- minimize fractional free volume.
 
 The surrogate models are used only for candidate selection. Final property
 values and Pareto assignments are based on explicit molecular-dynamics
@@ -34,6 +32,7 @@ evaluations.
 
 ## Repository structure
 
+```text
 EloKriti/
 ├── polymers_bo/
 │   ├── data.py
@@ -45,9 +44,10 @@ EloKriti/
 ├── images/
 │   └── AL_Workflow_Final.png
 ├── README.md
-└── LICENSE
+└── LICENSE 
 
-Requirements
+
+** Requirements
 
 The Bayesian-optimization workflow requires:
 

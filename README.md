@@ -112,7 +112,33 @@ The script ranks the unevaluated candidates and writes the selected batch to
 
 After the selected candidates are evaluated using the molecular-dynamics
 workflow, add the successful results to the evaluated CSV and run the command
-again for the next acquisition round.
+again for the next acquisition round. 
+
+## Hypervolume calculations
+
+The hypervolume and Pareto-front analyses reported in the paper were
+performed retrospectively after the MD evaluations were completed.
+
+To reproduce the hypervolume analysis, run:
+
+```bash
+python scripts/analyze_hypervolume.py \
+  --input evaluated_clean.csv \
+  --output-prefix al_hypervolume \
+  --mc-samples 300000 \
+  --seed 42
+
+This script:
+
+transforms the objectives to a common maximize-all convention;
+computes the cumulative Pareto front at each active-learning iteration;
+normalizes the objectives using fixed bounds from the complete evaluated set;
+estimates dominated hypervolume using 300,000 Monte Carlo samples;
+uses random seed 42 and the same Monte Carlo sample set for all iterations.
+
+To regenerate the active-learning progress figure, run:
+
+python scripts/make_al_progress.py
 
 ## Data availability
 

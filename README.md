@@ -126,7 +126,14 @@ Here:
 - `iteration` records the active-learning iteration associated with the evaluation.
 
 Only successfully evaluated candidates with complete values for all three
-optimization objectives are used to train the surrogate models.
+optimization objectives are used to train the surrogate models. 
+
+## Candidate-pool construction
+
+The construction of the 1000-candidate EloKriti screening pool is documented in:
+
+```text
+notebooks/candidate_pool_construction.ipynb
 
 ## Run candidate selection
 

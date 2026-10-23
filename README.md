@@ -125,7 +125,11 @@ Here:
 - `iteration` records the active-learning iteration associated with the evaluation.
 
 Only successfully evaluated candidates with complete values for all three
-optimization objectives are used to train the surrogate models.
+optimization objectives are used to train the surrogate models. 
+
+The study-specific input CSV files used by these scripts are provided in the
+associated Zenodo archive. After downloading the archive, place the required
+CSV files in a local `data/` directory at the repository root.
 
 ## Candidate-pool construction
 
@@ -214,7 +218,7 @@ scripts/pi1070_selection_benchmark.py
 scripts/representation_sensitivity.py
 scripts/scalarization_batch_benchmark.py
 
-PI1070 candidate-selection benchmark
+## PI1070 candidate-selection benchmark
 
 This analysis compares the EloKriti acquisition strategy with uniform-random
 selection and greedy maximin space-filling selection on the fully evaluated
@@ -270,7 +274,38 @@ implementation of standard ParEGO.
 Numerical outputs used in the revised manuscript and Supporting Information
 are archived in the associated Zenodo research-data record.
 
+### Chronological surrogate validation
 
+Out-of-sample surrogate performance was evaluated using chronological
+pre-acquisition validation. For each active-learning round, the surrogate was
+trained only on candidates whose MD labels were available before that round
+and then evaluated on candidates acquired in that round.
+
+Run with:
+
+
+```bash
+python scripts/preacquisition_surrogate_diagnostics.py \
+  --evaluated data/evaluated_clean_no_expansion.csv
+```
+## Surrogate baseline comparison 
+
+The original Gaussian-process surrogate was additionally compared with a
+simple linear-regression baseline using the five continuous molecular
+descriptors. The same chronological pre-acquisition train/test protocol is
+used for both models. 
+
+python scripts/surrogate_baseline_comparison.py \
+  --evaluated data/evaluated_clean_no_expansion.csv 
+
+## Structure-similarity audit 
+
+To assess possible structural overlap across the chronological training and
+validation boundary, each post-initial candidate is compared only with
+candidates whose labels were available before its acquisition round. 
+
+python scripts/structure_similarity_audit.py \
+  --evaluated data/evaluated_clean_no_expansion.csv
 
 ## Reproducibility
 

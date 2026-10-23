@@ -6,8 +6,7 @@ backbones using molecular-dynamics-derived network properties.
 This repository contains the active-learning and multi-objective
 Bayesian-optimization code used in:
 
-**Accelerated Discovery of BPA-Free Dental Resin Candidates through
-Active Learning of Network-Emergent Properties**
+**Active-Learning Discovery of BPA-Free Dental Resin Candidates through Backbone Screening and Network Validation**
 
 <p align="center">
   <img src="images/AL_Workflow_Final.png" width="900">

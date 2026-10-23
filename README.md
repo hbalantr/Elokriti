@@ -201,7 +201,76 @@ The active-learning progress script uses
 `evaluated_clean_no_expansion.csv` as the evaluated-candidate dataset.
 
 The hypervolume analysis is used only as a retrospective progress metric and
-does not contribute to candidate acquisition.
+does not contribute to candidate acquisition. 
+
+## Validation and robustness analyses
+
+Additional analyses performed during peer review are provided in the scripts/
+directory.
+
+The following scripts are included:
+
+scripts/pi1070_selection_benchmark.py
+scripts/representation_sensitivity.py
+scripts/scalarization_batch_benchmark.py
+
+PI1070 candidate-selection benchmark
+
+This analysis compares the EloKriti acquisition strategy with uniform-random
+selection and greedy maximin space-filling selection on the fully evaluated
+PI1070 polymer dataset.
+
+Run with:
+
+python scripts/pi1070_selection_benchmark.py \
+  --dataset data/PI1070.csv \
+  --seeds 50
+
+The default evaluation budgets are:
+
+10, 19, 27, 35, 41, 50, 57, 66, 71
+
+The analysis reports Pareto recall and normalized hypervolume recovery.
+
+## Representation-sensitivity analysis
+
+This analysis evaluates the sensitivity of surrogate performance to the
+molecular representation using chronological pre-acquisition validation.
+
+Run with:
+
+python scripts/representation_sensitivity.py \
+  --evaluated data/evaluated_clean_no_expansion.csv \
+  --repeats 10
+
+The tested representations include the original TF-IDF/SVD representation,
+case-preserving SMILES representations, continuous molecular descriptors,
+Morgan fingerprints combined with descriptors, and canonicalized SMILES
+representations.
+
+## Scalarization and batch-selection sensitivity
+
+This analysis evaluates sensitivity to the number of random objective
+scalarizations and to the batch-selection strategy using the PI1070 benchmark.
+
+Run with:
+
+python scripts/scalarization_batch_benchmark.py \
+  --data data/PI1070.csv \
+  --seeds 20
+
+The analysis compares 16, 32, 64, 128, and 256 random linear scalarizations
+and additionally evaluates a diversity-aware batch-selection strategy using
+64 scalarizations.
+
+The EloKriti acquisition strategy is a ParEGO-inspired
+random-linear-scalarization expected-improvement procedure and is not an
+implementation of standard ParEGO.
+
+Numerical outputs used in the revised manuscript and Supporting Information
+are archived in the associated Zenodo research-data record.
+
+
 
 ## Reproducibility
 

@@ -226,9 +226,11 @@ PI1070 polymer dataset.
 
 Run with:
 
+```bash
 python scripts/pi1070_selection_benchmark.py \
   --dataset data/PI1070.csv \
   --seeds 50
+```
 
 The default evaluation budgets are:
 
@@ -241,11 +243,13 @@ The analysis reports Pareto recall and normalized hypervolume recovery.
 This analysis evaluates the sensitivity of surrogate performance to the
 molecular representation using chronological pre-acquisition validation.
 
-Run with:
+Run with: 
 
+```bash
 python scripts/representation_sensitivity.py \
   --evaluated data/evaluated_clean_no_expansion.csv \
   --repeats 10
+```
 
 The tested representations include the original TF-IDF/SVD representation,
 case-preserving SMILES representations, continuous molecular descriptors,
@@ -259,9 +263,11 @@ scalarizations and to the batch-selection strategy using the PI1070 benchmark.
 
 Run with:
 
+```bash
 python scripts/scalarization_batch_benchmark.py \
   --data data/PI1070.csv \
   --seeds 20
+```
 
 The analysis compares 16, 32, 64, 128, and 256 random linear scalarizations
 and additionally evaluates a diversity-aware batch-selection strategy using
@@ -295,8 +301,10 @@ simple linear-regression baseline using the five continuous molecular
 descriptors. The same chronological pre-acquisition train/test protocol is
 used for both models. 
 
+```bash
 python scripts/surrogate_baseline_comparison.py \
-  --evaluated data/evaluated_clean_no_expansion.csv 
+  --evaluated data/evaluated_clean_no_expansion.csv
+```
 
 ## Structure-similarity audit 
 
@@ -304,8 +312,10 @@ To assess possible structural overlap across the chronological training and
 validation boundary, each post-initial candidate is compared only with
 candidates whose labels were available before its acquisition round. 
 
+```bash
 python scripts/structure_similarity_audit.py \
   --evaluated data/evaluated_clean_no_expansion.csv
+```
 
 ## Reproducibility
 

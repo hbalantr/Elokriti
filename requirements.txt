@@ -3,4 +3,5 @@ pandas==2.3.3
 scipy==1.17.0
 scikit-learn==1.8.0
 matplotlib==3.10.8
-rdkit==2024.03.5
+rdkit==2024.03.5 
+tqdm==4.67.3

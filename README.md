@@ -41,10 +41,10 @@ EloKriti/
 │   ├── suggest_next.py
 │   ├── analyze_hypervolume.py
 │   └── make_al_progress.py
-├── images/
-│   └── AL_Workflow_Final.png
 ├── notebooks/
 │   └── candidate_pool_construction.ipynb
+├── images/
+│   └── AL_Workflow_Final.png
 ├── environment.yml
 ├── requirements.txt
 ├── README.md
@@ -53,7 +53,8 @@ EloKriti/
 
 ## Requirements
 
-The Python packages required for the active-learning and analysis workflow are:
+The Python packages required for the active-learning, candidate-pool
+construction, and analysis workflows are:
 
 ```text
 numpy==1.26.4
@@ -62,6 +63,7 @@ scipy==1.17.0
 scikit-learn==1.8.0
 matplotlib==3.10.8
 rdkit==2024.03.5
+tqdm==4.67.3
 ```
 
 Install the required Python packages using:
@@ -71,13 +73,10 @@ pip install -r requirements.txt
 ```
 
 A complete Conda environment specification used for the molecular-simulation
-and analysis workflow is provided in:
+and analysis workflow is provided in `environment.yml`.
 
-```text
-environment.yml
-```
-
-The principal software versions used for the molecular-simulation workflow were:
+The principal software versions used for the molecular-simulation workflow
+were:
 
 ```text
 Python       3.11.14
@@ -91,7 +90,7 @@ GAFF         1.81
 
 EloKriti uses two primary CSV files:
 
-1. a candidate-pool file containing all candidates available for active-learning selection;
+1. a candidate-pool file containing candidates available for active-learning selection;
 2. an evaluated-candidate file containing candidates for which MD-derived objective values are available.
 
 The candidate-pool CSV must contain:
@@ -126,14 +125,27 @@ Here:
 - `iteration` records the active-learning iteration associated with the evaluation.
 
 Only successfully evaluated candidates with complete values for all three
-optimization objectives are used to train the surrogate models. 
+optimization objectives are used to train the surrogate models.
 
 ## Candidate-pool construction
 
-The construction of the 1000-candidate EloKriti screening pool is documented in:
+The construction of the 1000-candidate EloKriti screening pool is documented
+in:
 
 ```text
 notebooks/candidate_pool_construction.ipynb
+```
+
+The notebook reproduces the structural filtering, canonical-structure
+deduplication, and diversity-selection procedure used to construct the
+candidate pool. The workflow includes polymerization-mechanism and
+molecular-weight filtering, exclusion of BPA/BPF/BPS/BPAF structural motifs,
+canonical-SMILES deduplication, and Morgan-fingerprint-based Butina clustering
+followed by greedy MaxMin selection.
+
+The GAFF-compatible intermediate candidate table (`gaff_ok.csv`) and the
+study-specific candidate tables required to reproduce this workflow are
+provided with the associated Zenodo research-data archive.
 
 ## Run candidate selection
 
@@ -149,11 +161,8 @@ python scripts/suggest_next.py \
   --scalarizations 64
 ```
 
-The script ranks the unevaluated candidates and writes the selected batch to:
-
-```text
-next_candidates.csv
-```
+The script ranks the unevaluated candidates and writes the selected batch to
+`next_candidates.csv`.
 
 After the selected candidates are evaluated using the molecular-dynamics
 workflow, the successful results are added to the evaluated-candidate CSV and
@@ -188,13 +197,8 @@ To regenerate the active-learning progress figure, run:
 python scripts/make_al_progress.py
 ```
 
-The active-learning progress script uses:
-
-```text
-evaluated_clean_no_expansion.csv
-```
-
-as the evaluated-candidate dataset.
+The active-learning progress script uses
+`evaluated_clean_no_expansion.csv` as the evaluated-candidate dataset.
 
 The hypervolume analysis is used only as a retrospective progress metric and
 does not contribute to candidate acquisition.
@@ -202,8 +206,9 @@ does not contribute to candidate acquisition.
 ## Reproducibility
 
 The repository contains the executable active-learning,
-Gaussian-process-surrogate, candidate-selection, Pareto-analysis, and
-hypervolume-analysis code associated with EloKriti.
+Gaussian-process-surrogate, candidate-selection, Pareto-analysis,
+hypervolume-analysis, and candidate-pool-construction workflows associated
+with EloKriti.
 
 The Python dependencies are provided in `requirements.txt`, while the complete
 Conda environment used for the molecular-simulation and analysis workflow is

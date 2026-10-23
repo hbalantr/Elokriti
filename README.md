@@ -43,6 +43,8 @@ EloKriti/
 │   └── make_al_progress.py
 ├── images/
 │   └── AL_Workflow_Final.png
+├── notebooks/
+│   └── candidate_pool_construction.ipynb
 ├── environment.yml
 ├── requirements.txt
 ├── README.md

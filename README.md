@@ -42,7 +42,7 @@ EloKriti/
 │   ├── analyze_hypervolume.py
 │   └── make_al_progress.py
 ├── notebooks/
-│   └── candidate_pool_construction.ipynb
+│   └── candidate_pool_construction_final.ipynb
 ├── images/
 │   └── AL_Workflow_Final.png
 ├── environment.yml
@@ -137,7 +137,7 @@ The construction of the 1000-candidate EloKriti screening pool is documented
 in:
 
 ```text
-notebooks/candidate_pool_construction.ipynb
+notebooks/candidate_pool_construction_final.ipynb
 ```
 
 The notebook reproduces the structural filtering, canonical-structure

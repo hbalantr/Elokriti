@@ -157,8 +157,8 @@ From the repository root, run:
 
 ```bash
 python scripts/suggest_next.py \
-  --candidate-csv candidate_pool.csv \
-  --evaluated-csv evaluated_clean_no_expansion.csv \
+  --candidate-csv data/candidate_pool.csv \
+  --evaluated-csv data/evaluated_clean_no_expansion.csv \
   --output-csv next_candidates.csv \
   --top-k 10 \
   --seed 42 \
@@ -181,7 +181,7 @@ To reproduce the hypervolume analysis, run:
 
 ```bash
 python scripts/analyze_hypervolume.py \
-  --input evaluated_clean_no_expansion.csv \
+  --input data/evaluated_clean_no_expansion.csv \
   --output-prefix al_hypervolume \
   --mc-samples 300000 \
   --seed 42
@@ -333,18 +333,11 @@ kept separately from the executable source code.
 
 ## Data availability
 
-This GitHub repository contains the executable active-learning and
-Bayesian-optimization code associated with EloKriti.
+This GitHub repository contains the executable active-learning and Bayesian-optimization code associated with EloKriti.
 
-The accompanying research-data archive will contain the study-specific
-evaluated-candidate tables, molecular structures, molecular-dynamics inputs and
-outputs, simulation topologies, construction diagnostics, and processed
-property data used in the revised manuscript.
+The study-specific data supporting the manuscript, including candidate-library data, active-learning evaluation data, candidate-pool audit results, surrogate-model validation results, benchmark and sensitivity analyses, and translated-network validation data, are archived on Zenodo:
 
-These data will be deposited in a versioned Zenodo research-data record. The
-Zenodo DOI and corresponding versioned GitHub release will be added here when
-the research-data record is finalized.
-
+https://doi.org/10.5281/zenodo.23605867
 ## Citation
 
 If you use this code, please cite:

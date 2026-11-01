@@ -27,7 +27,13 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import sys
 import warnings
+
+# Allow imports from the repository root when this script is run directly.
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import numpy as np
 import pandas as pd
@@ -42,8 +48,8 @@ from sklearn.exceptions import ConvergenceWarning
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import StandardScaler
 
-from polymer_bo.bo import parego_acquisition_scores
-from polymer_bo.surrogate import FeatureConfig, MultiTargetGPSurrogate
+from polymers_bo.bo import parego_acquisition_scores
+from polymers_bo.surrogate import FeatureConfig, MultiTargetGPSurrogate
 
 
 OBJECTIVE_NAMES = ["bulk_modulus", "thermal_conductivity", "density"]

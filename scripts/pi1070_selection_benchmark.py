@@ -42,8 +42,8 @@ from sklearn.exceptions import ConvergenceWarning
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import StandardScaler
 
-from polymer_bo_emulator.bo import parego_acquisition_scores
-from polymer_bo_emulator.surrogate import FeatureConfig, MultiTargetGPSurrogate
+from polymer_bo.bo import parego_acquisition_scores
+from polymer_bo.surrogate import FeatureConfig, MultiTargetGPSurrogate
 
 
 OBJECTIVE_NAMES = ["bulk_modulus", "thermal_conductivity", "density"]

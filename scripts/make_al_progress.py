@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 # =========================================================
 # Files and settings
 # =========================================================
-EVALUATED_FILE = "evaluated_clean_no_expansion.csv"
+EVALUATED_FILE = "data/evaluated_clean_no_expansion.csv"
 OUTDIR = "figures_al_progress"
 os.makedirs(OUTDIR, exist_ok=True)
 

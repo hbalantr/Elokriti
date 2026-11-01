@@ -342,7 +342,7 @@ https://doi.org/10.5281/zenodo.23605867
 
 If you use this code, please cite:
 
-**Active-Learning Discovery of BPA-Free Dental Resin Candidates through Backbone Screening and Network Validation**
+**Active-Learning Discovery of BPA-Free Dental Resin Candidates through Backbone Screening and Cured-Network Validation**
 
 The final journal citation and DOI will be added after publication.
 

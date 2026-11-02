@@ -252,7 +252,7 @@ dependencies:
       - amberutils==21.0
       - edgembar==3.0
       - gputil==1.4.0
-      - htpolynet==1.0.9
+      - htpolynet==1.0.8
       - idna==3.11
       - mmpbsa-py==16.0
       - packmol-memgen==2025.1.29

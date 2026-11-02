@@ -14,7 +14,7 @@ The following software environment was used for the EloKriti molecular-simulatio
 
 ## Molecular-simulation software
 
-- HTPolyNet 1.0.9
+- HTPolyNet 1.0.8
 - GROMACS 2025.4
 - AmberTools 24.8
 - GAFF 1.81

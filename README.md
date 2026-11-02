@@ -80,7 +80,7 @@ were:
 
 ```text
 Python       3.11.14
-HTPolyNet    1.0.9
+HTPolyNet    1.0.8
 GROMACS      2025.4
 AmberTools   24.8
 GAFF         1.81

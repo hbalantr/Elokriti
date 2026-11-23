@@ -337,7 +337,8 @@ This GitHub repository contains the executable active-learning and Bayesian-opti
 
 The study-specific data supporting the manuscript, including candidate-library data, active-learning evaluation data, candidate-pool audit results, surrogate-model validation results, benchmark and sensitivity analyses, and translated-network validation data, are archived on Zenodo:
 
-https://doi.org/10.5281/zenodo.23605867
+https://doi.org/10.5281/zenodo.23890717 
+
 ## Citation
 
 If you use this code, please cite:
